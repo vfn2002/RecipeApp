@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>Add ingredients</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="searchRecipe()">
           <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>
@@ -17,10 +17,9 @@
 
 </ion-header>
 
-
 <ion-content padding>
 
-  <ingredients-list [ingredients]="ingredients"></ingredients-list>
+  <ingredients-list [ingredients]="ingredients$ | async"></ingredients-list>
 
   <ion-fab right bottom padding>
       <button ion-fab color="primary" (click)="addIngredient()"><ion-icon name="add"></ion-icon></button>

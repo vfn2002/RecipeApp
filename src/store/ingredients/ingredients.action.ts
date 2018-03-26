@@ -10,7 +10,9 @@ export enum IngredientsActionTypes {
 
 export class AddIngredient implements Action {
   readonly type = IngredientsActionTypes.ADD_INGREDIENT;
-  constructor(public payload: Ingredient){}
+  constructor(public payload: Ingredient){
+    console.log('AddIngredient payload =>', payload);
+  }
 }
 
 export class SearchIngredient implements Action {

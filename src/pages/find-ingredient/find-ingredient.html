@@ -16,13 +16,13 @@
 
 <ion-content padding>
 
-  <div class="full-screen-content flex-middle">
-    <ion-spinner *ngIf="isLoading$ | async"></ion-spinner>
+  <div class="full-screen-content flex-middle" *ngIf="isLoading$ | async">
+    <ion-spinner></ion-spinner>
   </div>
   <button (click)="testApi()">test</button>
 
   <ion-list *ngIf="!(isLoading$ | async)">
-    <ion-item *ngFor="let ingredient of (ingredients$ | async)">
+    <ion-item *ngFor="let ingredient of (ingredients$ | async)" (click)="addIngredient(ingredient)">
       {{ingredient.food.label}}
     </ion-item>
   </ion-list>

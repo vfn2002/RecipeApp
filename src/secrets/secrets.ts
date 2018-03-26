@@ -6,5 +6,9 @@ export const secrets = {
   recipe_search: {
     application_id: 'dbfbff19',
     api_key: '706835a24a10c16d16a32ec9ebe1e51f'
+  },
+  new_recipe_search: {
+    application_id: 'd0cdf38e',
+    api_key: 'eaa8aa8f91524c6561beca1ae262e8bf'
   }
 };

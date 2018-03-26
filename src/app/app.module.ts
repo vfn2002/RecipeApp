@@ -18,9 +18,13 @@ import { AppState } from '../store/app-state';
 import { ingredientsReducer } from '../store/ingredients/ingredients.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpClientModule } from '@angular/common/http';
+import { RecipeProvider } from '../providers/recipe/recipe';
+import { RecipeEffects } from '../store/recipes/recipes.effects';
+import { recipeReducer } from '../store/recipes/recipes.reducer';
 
 export const reducers: ActionReducerMap<AppState> = {
-  ingredients: ingredientsReducer
+  ingredients: ingredientsReducer,
+  recipes: recipeReducer
 }
 
 @NgModule({
@@ -31,7 +35,8 @@ export const reducers: ActionReducerMap<AppState> = {
   imports: [
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([
-      IngredientsEffects
+      IngredientsEffects,
+      RecipeEffects
     ]),
     StoreDevtoolsModule.instrument({
       name: 'Recipe App',
@@ -53,7 +58,8 @@ export const reducers: ActionReducerMap<AppState> = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    IngredientProvider
+    IngredientProvider,
+    RecipeProvider
   ]
 })
 export class AppModule {}

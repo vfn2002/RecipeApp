@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppState } from '../../store/app-state';
 import { Store } from '@ngrx/store';
-import { SearchIngredient } from '../../store/ingredients/ingredients.action';
+import { SearchIngredient, AddIngredient } from '../../store/ingredients/ingredients.action';
 import { Ingredient } from '../../model/Ingredient';
 import { Observable } from 'rxjs/Observable';
+import { RecipeSearchPage } from '../recipe-search/recipe-search';
 
 /**
  * Generated class for the FindIngredientPage page.
@@ -40,6 +41,11 @@ export class FindIngredientPage {
 
   testApi() {
     this.store.dispatch(new SearchIngredient('apple'));
+  }
+
+  addIngredient(ingredient: Ingredient) {
+    this.store.dispatch(new AddIngredient(ingredient));
+    this.navCtrl.push(RecipeSearchPage);
   }
 
 }

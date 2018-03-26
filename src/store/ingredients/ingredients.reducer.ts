@@ -3,11 +3,13 @@ import { Ingredient } from "../../model/Ingredient";
 
 export interface IngredientsState {
   searchIngredientPayload: Ingredient[],
+  ingredients: Ingredient[],
   isLoading: boolean
 }
 
 export const initialState: IngredientsState = {
   searchIngredientPayload: null,
+  ingredients: [],
   isLoading: false
 };
 
@@ -16,7 +18,8 @@ export function ingredientsReducer(state = initialState, action: IngredientsActi
 
     case IngredientsActionTypes.ADD_INGREDIENT: {
       return {
-        ...state
+        ...state,
+        ingredients: [action.payload, ...state.ingredients]
       }
     }
 

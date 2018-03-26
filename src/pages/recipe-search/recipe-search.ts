@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Ingredient } from '../../model/Ingredient';
+import { Ingredient} from '../../model/Ingredient';
 import { FindIngredientPage } from '../find-ingredient/find-ingredient';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app-state';
+import { Observable } from 'rxjs/Observable';
+import { SearchRecipe } from '../../store/recipes/recipes.action';
 
 /**
  * Generated class for the RecipeSearchPage page.
@@ -19,29 +21,38 @@ import { AppState } from '../../store/app-state';
 })
 export class RecipeSearchPage {
 
+  ingredients$: Observable<Ingredient[]>;
+
+  ingredients_query: string;
+
+
   constructor(public store: Store<AppState>,
               public navCtrl: NavController,
               public navParams: NavParams) {
+    this.setup();
   }
 
-  ingredients: Ingredient[] = [
-    // { name: 'Egg' },
-    // { name: 'Milk' },
-    // { name: 'Milk' },
-    // { name: 'Milk' },
-    // { name: 'Milk' },
-    // { name: 'Milk' },
-    // { name: 'Milk' },
-    // { name: 'Milk' },
-    // { name: 'Milk' },
-    // { name: 'Milk' },
-    // { name: 'Milk' },
-    // { name: 'Milk' },
-    // { name: 'Milk' },
-  ]
+  setup() {
+    this.ingredients$ = this.store.select(state => state.ingredients.ingredients);
+    this.ingredients$.subscribe(
+      ingredients => this.formatIngredients(ingredients)
+    );
+  }
+
+  formatIngredients(ingredients: Ingredient[]) {
+    let ingredientsString: string = '';
+    for (const ingredient of ingredients) {
+      ingredientsString += '1 ' + ingredient.food.label;
+    }
+    this.ingredients_query = ingredientsString;
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecipeSearchPage');
+  }
+
+  searchRecipe() {
+    this.store.dispatch(new SearchRecipe(this.ingredients_query));
   }
 
   addIngredient() {
