@@ -29,7 +29,7 @@ export class RecipeProvider {
       + this.recipe_database_application_id_handle
       + this.recipe_database_api_key_handle
     ).map(
-      (res: any) => {console.log('recipes response => ', res); return res},
+      (res: any) => {console.log('recipes response => ', res); return res.hints},
       err => {console.log(err)}
     );
   }
