@@ -1,0 +1,29 @@
+<!--
+  Generated template for the FindIngredientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-searchbar placeholder="Search">
+    </ion-searchbar>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="full-screen-content flex-middle">
+    <ion-spinner *ngIf="isLoading$ | async"></ion-spinner>
+  </div>
+  <button (click)="testApi()">test</button>
+
+  <ion-list *ngIf="!(isLoading$ | async)">
+    <ion-item *ngFor="let ingredient of (ingredients$ | async)">
+      {{ingredient.food.label}}
+    </ion-item>
+  </ion-list>
+</ion-content>
