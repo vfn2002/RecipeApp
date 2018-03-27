@@ -6,6 +6,9 @@ import { SearchIngredient, AddIngredient } from '../../store/ingredients/ingredi
 import { Ingredient } from '../../model/Ingredient';
 import { Observable } from 'rxjs/Observable';
 import { RecipeSearchPage } from '../recipe-search/recipe-search';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { debounceTime, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
 
 /**
  * Generated class for the FindIngredientPage page.
@@ -24,13 +27,30 @@ export class FindIngredientPage {
   ingredients$: Observable<Ingredient[]>;
   isLoading$: Observable<boolean>;
 
+  searchForm: FormGroup;
+
   constructor(public store: Store<AppState>,
+              public formBuilder: FormBuilder,
               public navCtrl: NavController,
               public navParams: NavParams) {
     this.setup();
   }
 
   setup() {
+    this.searchForm = this.formBuilder.group({
+      'searchInput': [null]
+    })
+
+    this.searchForm.valueChanges
+      .pipe(
+        debounceTime(500),
+        switchMap((form: any) => of(this.store.dispatch(new SearchIngredient(form.searchInput))))
+      )
+      .subscribe(
+        res => {console.log(res)},
+        err => {console.log(err)}
+      )
+
     this.ingredients$ = this.store.select(state => state.ingredients.searchIngredientPayload);
     this.isLoading$ = this.store.select(state => state.ingredients.isLoading);
   }

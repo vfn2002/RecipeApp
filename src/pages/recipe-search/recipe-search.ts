@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app-state';
 import { Observable } from 'rxjs/Observable';
 import { SearchRecipe } from '../../store/recipes/recipes.action';
+import { RecipeListPage } from '../recipe-list/recipe-list';
 
 /**
  * Generated class for the RecipeSearchPage page.
@@ -42,9 +43,9 @@ export class RecipeSearchPage {
   formatIngredients(ingredients: Ingredient[]) {
     let ingredientsString: string = '';
     for (const ingredient of ingredients) {
-      ingredientsString += '1 ' + ingredient.food.label;
+      ingredientsString += ' ' + ingredient.food.label;
     }
-    this.ingredients_query = ingredientsString;
+    this.ingredients_query = ingredientsString.replace(',', '');
   }
 
   ionViewDidLoad() {
@@ -53,6 +54,7 @@ export class RecipeSearchPage {
 
   searchRecipe() {
     this.store.dispatch(new SearchRecipe(this.ingredients_query));
+    this.navCtrl.push(RecipeListPage);
   }
 
   addIngredient() {

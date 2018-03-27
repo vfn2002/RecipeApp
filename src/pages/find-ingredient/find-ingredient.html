@@ -6,10 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-searchbar placeholder="Search">
-    </ion-searchbar>
-  </ion-navbar>
+  <form [formGroup]="searchForm">
+    <ion-navbar color="primary">
+      <ion-searchbar placeholder="Search" formControlName="searchInput">
+      </ion-searchbar>
+    </ion-navbar>
+  </form>
 
 </ion-header>
 
@@ -19,7 +21,6 @@
   <div class="full-screen-content flex-middle" *ngIf="isLoading$ | async">
     <ion-spinner></ion-spinner>
   </div>
-  <button (click)="testApi()">test</button>
 
   <ion-list *ngIf="!(isLoading$ | async)">
     <ion-item *ngFor="let ingredient of (ingredients$ | async)" (click)="addIngredient(ingredient)">

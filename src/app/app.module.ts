@@ -21,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RecipeProvider } from '../providers/recipe/recipe';
 import { RecipeEffects } from '../store/recipes/recipes.effects';
 import { recipeReducer } from '../store/recipes/recipes.reducer';
+import { RecipeListPage } from '../pages/recipe-list/recipe-list';
+import { RecipeListPageModule } from '../pages/recipe-list/recipe-list.module';
 
 export const reducers: ActionReducerMap<AppState> = {
   ingredients: ingredientsReducer,
@@ -45,6 +47,7 @@ export const reducers: ActionReducerMap<AppState> = {
     HttpClientModule,
     RecipeSearchPageModule,
     FindIngredientPageModule,
+    RecipeListPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -52,7 +55,8 @@ export const reducers: ActionReducerMap<AppState> = {
     MyApp,
     HomePage,
     RecipeSearchPage,
-    FindIngredientPage
+    FindIngredientPage,
+    RecipeListPage
   ],
   providers: [
     StatusBar,

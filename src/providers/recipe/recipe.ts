@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { secrets } from '../../secrets/secrets';
+import 'rxjs/add/operator/map';
 
 /*
   Generated class for the RecipeProvider provider.
@@ -15,10 +16,6 @@ export class RecipeProvider {
   recipe_database_api_key_handle = '&app_key=' + secrets.recipe_search.api_key;
   recipe_database_application_id_handle = '&app_id=' + secrets.recipe_search.application_id;
 
-  'https://api.edamam.com/search?q=chicken&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&from=0&to=3&calories=591-722&health=alcohol-free'
-
-
-
   constructor(public http: HttpClient) {
   }
 
@@ -29,7 +26,7 @@ export class RecipeProvider {
       + this.recipe_database_application_id_handle
       + this.recipe_database_api_key_handle
     ).map(
-      (res: any) => {console.log('recipes response => ', res); return res.hints},
+      (res: any) => {return res.hits.map(hit => hit = hit.recipe)},
       err => {console.log(err)}
     );
   }
