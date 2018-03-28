@@ -26,8 +26,8 @@ export class FindIngredientPage {
 
   ingredients$: Observable<Ingredient[]>;
   isLoading$: Observable<boolean>;
-
   searchForm: FormGroup;
+  searchInput: string;
 
   constructor(public store: Store<AppState>,
               public formBuilder: FormBuilder,
@@ -44,12 +44,19 @@ export class FindIngredientPage {
     this.searchForm.valueChanges
       .pipe(
         debounceTime(500),
-        switchMap((form: any) => of(this.store.dispatch(new SearchIngredient(form.searchInput))))
+        switchMap((form: any) => {
+          if (form.searchInput) return of(this.store.dispatch(new SearchIngredient(form.searchInput)))
+        })
       )
       .subscribe(
         res => {console.log(res)},
         err => {console.log(err)}
       )
+
+    this.searchForm.valueChanges
+      .subscribe(
+        input => {this.searchInput = input.searchInput}
+      );
 
     this.ingredients$ = this.store.select(state => state.ingredients.searchIngredientPayload);
     this.isLoading$ = this.store.select(state => state.ingredients.isLoading);
@@ -66,6 +73,16 @@ export class FindIngredientPage {
   addIngredient(ingredient: Ingredient) {
     this.store.dispatch(new AddIngredient(ingredient));
     this.navCtrl.push(RecipeSearchPage);
+  }
+
+  addIngredientFromLabel(searchInput: string) {
+    const ingredient: Ingredient = {
+      food: {
+        label: searchInput
+      },
+      measures: {}
+    };
+    this.addIngredient(ingredient);
   }
 
 }

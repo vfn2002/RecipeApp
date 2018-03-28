@@ -1,6 +1,6 @@
 export interface Ingredient {
-  food: Food,
-  measures: Measures
+  food?: Food,
+  measures?: Measures
 }
 
 export interface Food {

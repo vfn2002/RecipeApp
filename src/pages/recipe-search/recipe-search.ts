@@ -7,6 +7,7 @@ import { AppState } from '../../store/app-state';
 import { Observable } from 'rxjs/Observable';
 import { SearchRecipe } from '../../store/recipes/recipes.action';
 import { RecipeListPage } from '../recipe-list/recipe-list';
+import { DeleteIngredient } from '../../store/ingredients/ingredients.action';
 
 /**
  * Generated class for the RecipeSearchPage page.
@@ -59,6 +60,10 @@ export class RecipeSearchPage {
 
   addIngredient() {
     this.navCtrl.push(FindIngredientPage);
+  }
+
+  deleteIngredient(ingredient: Ingredient) {
+    this.store.dispatch(new DeleteIngredient(ingredient));
   }
 
 }

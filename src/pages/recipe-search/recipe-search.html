@@ -17,9 +17,10 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
-  <ingredients-list [ingredients]="ingredients$ | async"></ingredients-list>
+  <ingredients-list [ingredients]="ingredients$ | async"
+                    (onDeleteIngredient)="deleteIngredient($event)"></ingredients-list>
 
   <ion-fab right bottom padding>
       <button ion-fab color="primary" (click)="addIngredient()"><ion-icon name="add"></ion-icon></button>

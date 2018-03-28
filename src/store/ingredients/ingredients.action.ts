@@ -3,6 +3,7 @@ import { Ingredient } from '../../model/Ingredient';
 
 export enum IngredientsActionTypes {
   ADD_INGREDIENT = '[Ingredients] ADD_INGREDIENT',
+  DELETE_INGREDIENT = '[Ingredients] DELETE_INGREDIENT',
   SEARCH_INGREDIENT = '[Ingredients] SEARCH_INGREDIENT',
   SEARCH_INGREDIENT_SUCCESS = '[Ingredients] SEARCH_INGREDIENT_SUCCESS',
   SEARCH_INGREDIENT_FAILURE = '[Ingredients] SEARCH_INGREDIENT_FAILURE'
@@ -13,6 +14,11 @@ export class AddIngredient implements Action {
   constructor(public payload: Ingredient){
     console.log('AddIngredient payload =>', payload);
   }
+}
+
+export class DeleteIngredient implements Action {
+  readonly type = IngredientsActionTypes.DELETE_INGREDIENT;
+  constructor(public payload: Ingredient){}
 }
 
 export class SearchIngredient implements Action {
@@ -35,6 +41,7 @@ export class SearchIngredientFailure implements Action {
 
 export type IngredientsActions = 
  | AddIngredient
+ | DeleteIngredient
  | SearchIngredient
  | SearchIngredientSuccess
  | SearchIngredientFailure;

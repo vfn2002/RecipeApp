@@ -17,12 +17,18 @@
 
 
 <ion-content padding>
+  
+  <ion-item *ngIf="searchInput && searchInput.length >= 1" (click)="addIngredientFromLabel(searchInput)">
+    <ion-label class="search-input-label">
+      {{searchInput}}
+    </ion-label>
+  </ion-item>
 
   <div class="full-screen-content flex-middle" *ngIf="isLoading$ | async">
     <ion-spinner></ion-spinner>
   </div>
-
-  <ion-list *ngIf="!(isLoading$ | async)">
+  
+  <ion-list *ngIf="!(isLoading$ | async)" class="ingredients-search-list">
     <ion-item *ngFor="let ingredient of (ingredients$ | async)" (click)="addIngredient(ingredient)">
       {{ingredient.food.label}}
     </ion-item>

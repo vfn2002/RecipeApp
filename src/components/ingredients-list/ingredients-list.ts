@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Ingredient } from '../../model/Ingredient';
 
 /**
@@ -14,8 +14,13 @@ import { Ingredient } from '../../model/Ingredient';
 export class IngredientsListComponent {
 
   @Input() ingredients: Ingredient[];
+  @Output() onDeleteIngredient = new EventEmitter<Ingredient>();
 
   constructor() {
+  }
+
+  deleteIngredient(ingredient: Ingredient) {
+    this.onDeleteIngredient.emit(ingredient);
   }
 
 }

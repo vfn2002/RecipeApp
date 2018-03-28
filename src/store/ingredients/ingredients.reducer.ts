@@ -23,6 +23,13 @@ export function ingredientsReducer(state = initialState, action: IngredientsActi
       }
     }
 
+    case IngredientsActionTypes.DELETE_INGREDIENT: {
+      return {
+        ...state,
+        ingredients: state.ingredients.filter(ingredient => ingredient !== action.payload)
+      }
+    }
+
     case IngredientsActionTypes.SEARCH_INGREDIENT: {
       return {
         ...state,
@@ -35,6 +42,13 @@ export function ingredientsReducer(state = initialState, action: IngredientsActi
         ...state,
         isLoading: false,
         searchIngredientPayload: action.payload
+      }
+    }
+
+    case IngredientsActionTypes.SEARCH_INGREDIENT_FAILURE: {
+      return {
+        ...state,
+        isLoading: false
       }
     }
 
