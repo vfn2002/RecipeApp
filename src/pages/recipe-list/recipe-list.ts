@@ -4,6 +4,7 @@ import { Recipe } from '../../model/Recipe';
 import { AppState } from '../../store/app-state';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { RecipePage } from '../recipe/recipe';
 
 /**
  * Generated class for the RecipeListPage page.
@@ -31,6 +32,11 @@ export class RecipeListPage {
   setup() {
     this.recipes$ = this.store.select(state => state.recipes.recipes);
     this.isLoading$ = this.store.select(state => state.recipes.isLoading);
+  }
+
+  navigateRecipe(recipe: Recipe) {
+    console.log(recipe, 'navigate recip');
+    this.navCtrl.push(RecipePage, {uri: recipe.uri})
   }
 
 

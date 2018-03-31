@@ -38,6 +38,7 @@ export class IngredientProvider {
       err => {console.log(err)}
     );
   }
+  
   searchIngredientsLocal(search_term: string) {
     return this.http.get<any>(
       'http://localhost:3000/foods/' + search_term

@@ -1,0 +1,84 @@
+page-recipe {
+  .recipe-header-image {
+    height: 250px;
+    background-size: cover !important;
+    position: relative;
+  }
+  .recipe-content {
+    background-color: color($colors, light-background, base);
+  }
+  .diet-label-text {
+    font-weight: 600;
+    color: white;
+  }
+  .diet-label-chip {
+    background: #8BC34A;
+  }
+  .back-button-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    margin: 12px 19px
+  }
+  .timer-label-chip {
+    color: white;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.32);
+  }
+  .timer-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 8px;
+  }
+  .diet-chips-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 8px;
+  }
+  .full-recipe-button {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  .back-arrow {
+    font-size: 2.4rem
+  }
+  .recipe-title {
+    font-weight: 100;
+    color: #e52d27;
+    margin: 12px;
+    font-size: 36px;
+    font-family: "roboto-thin";
+    text-align: center;
+  }
+  .macros-container {
+    width: fit-content;
+    margin: 0 auto;
+  }
+  .calories-container {
+    width: fit-content;
+    margin: 0 auto;
+  }
+  .yield-macros {
+    border: 1px solid color($colors, primary, base);
+    color: color($colors, primary, base);
+    background: none;
+  }
+  .add-to-shopping-button {
+    width: 100%;
+    background: none;
+    box-shadow: none;
+    color: color($colors, primary, base);
+  }
+  .full-recipe-button {
+    width: 100%;
+    height: 60px;
+  }
+  .source-text {
+    text-align: center;
+    color: #666;
+  }
+}

@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Search results</ion-title>
   </ion-navbar>
 
@@ -19,7 +19,7 @@
   </div>
 
   <ion-list *ngIf="!(isLoading$ | async)">
-    <recipe-item [recipe]="recipe" *ngFor="let recipe of (recipes$ | async)"></recipe-item>
+    <recipe-item [recipe]="recipe" *ngFor="let recipe of (recipes$ | async)" (click)="navigateRecipe(recipe)"></recipe-item>
   </ion-list>
 
 </ion-content>

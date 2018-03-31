@@ -9,7 +9,7 @@ import { RecipeSearchPage } from '../pages/recipe-search/recipe-search';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = RecipeSearchPage;
+  rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

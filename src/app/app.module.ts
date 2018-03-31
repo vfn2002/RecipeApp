@@ -23,6 +23,11 @@ import { RecipeEffects } from '../store/recipes/recipes.effects';
 import { recipeReducer } from '../store/recipes/recipes.reducer';
 import { RecipeListPage } from '../pages/recipe-list/recipe-list';
 import { RecipeListPageModule } from '../pages/recipe-list/recipe-list.module';
+import { RecipePage } from '../pages/recipe/recipe';
+import { RecipePageModule } from '../pages/recipe/recipe.module';
+import { FridgePageModule } from '../pages/fridge/fridge.module';
+import { ShoppingListPageModule } from '../pages/shopping-list/shopping-list.module';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 export const reducers: ActionReducerMap<AppState> = {
   ingredients: ingredientsReducer,
@@ -48,6 +53,9 @@ export const reducers: ActionReducerMap<AppState> = {
     RecipeSearchPageModule,
     FindIngredientPageModule,
     RecipeListPageModule,
+    RecipePageModule,
+    FridgePageModule,
+    ShoppingListPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -56,14 +64,16 @@ export const reducers: ActionReducerMap<AppState> = {
     HomePage,
     RecipeSearchPage,
     FindIngredientPage,
-    RecipeListPage
+    RecipeListPage,
+    RecipePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     IngredientProvider,
-    RecipeProvider
+    RecipeProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}
