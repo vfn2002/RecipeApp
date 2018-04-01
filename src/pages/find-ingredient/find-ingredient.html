@@ -16,7 +16,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   
   <ion-card *ngIf="(searchInput && searchInput.length >= 1) || (searchInput && (ingredients$ | async).length >= 1)">
     <ion-item *ngIf="searchInput && searchInput.length >= 1" (click)="addIngredientFromLabel(searchInput)">

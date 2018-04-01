@@ -43,6 +43,14 @@ export function recipeReducer(state = initialState, action: RecipeActions): Reci
       return {
         ...state,
         isLoading: false,
+        recipes: action.payload
+      }
+    }
+
+    case RecipeActionTypes.ADD_RECIPES_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
         recipes: [...state.recipes, ...action.payload]
       }
     }

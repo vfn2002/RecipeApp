@@ -6,7 +6,8 @@ export enum RecipeActionTypes {
   SEARCH_RECIPE_SUCCESS = '[Recipe] SEARCH_RECIPE_SUCCESS',
   SEARCH_RECIPE_FAILURE = '[Recipe] SEARCH_RECIPE_FAILURE',
   SET_SEARCH_RESULTS = '[Recipe] SET_SEARCH_RESULTS',
-  LOAD_MORE_RECIPES = '[Recipe] LOAD_MORE_RECIPES'
+  LOAD_MORE_RECIPES = '[Recipe] LOAD_MORE_RECIPES',
+  ADD_RECIPES_SUCCESS = '[Recipe] ADD_RECIPE_SUCCESS'
 }
 
 export class SearchRecipe implements Action {
@@ -24,7 +25,11 @@ export class LoadMoreRecipes implements Action {
 export class SearchRecipeSuccess implements Action {
   readonly type = RecipeActionTypes.SEARCH_RECIPE_SUCCESS;
   constructor(public payload: Recipe[]){
-    console.log('success payload => ', payload);
+  }
+}
+export class AddRecipesSuccess implements Action {
+  readonly type = RecipeActionTypes.ADD_RECIPES_SUCCESS;
+  constructor(public payload: Recipe[]){
   }
 }
 
@@ -42,6 +47,7 @@ export class SearchRecipeFailure implements Action {
 export type RecipeActions = 
  | SearchRecipe
  | SearchRecipeSuccess
+ | AddRecipesSuccess
  | SearchRecipeFailure
  | SetSearchResults
  | LoadMoreRecipes;

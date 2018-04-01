@@ -41,23 +41,24 @@ export class FindIngredientPage {
       'searchInput': [null]
     })
 
-    this.searchForm.valueChanges
-      .pipe(
-        debounceTime(500),
-        switchMap((form: any) => {
-          if (form.searchInput) return of(this.store.dispatch(new SearchIngredient(form.searchInput)))
-        })
-      )
-      .subscribe(
-        res => {console.log(res)},
-        err => {console.log(err)}
-      )
+    // Uncomment this to enable searching for ingredients.
+    // this.searchForm.valueChanges
+    //   .pipe(
+    //     debounceTime(500),
+    //     switchMap((form: any) => {
+    //       if (form.searchInput) return of(this.store.dispatch(new SearchIngredient(form.searchInput)))
+    //     })
+    //   )
+    //   .subscribe(
+    //     res => {console.log(res)},
+    //     err => {console.log(err)}
+    //   )
 
     this.searchForm.valueChanges
       .subscribe(
         input => {this.searchInput = input.searchInput}
       );
-
+ 
     this.ingredients$ = this.store.select(state => state.ingredients.searchIngredientPayload);
     this.isLoading$ = this.store.select(state => state.ingredients.isLoading);
   }

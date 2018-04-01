@@ -5,7 +5,7 @@
         {{recipe.ingredients | difficulty}}
       </span>
     </div>
-    <div class="cooking-time-duration">
+    <div class="cooking-time-duration" *ngIf="recipe.totalTime > 0">
       <span class="cooking-time-text">
         {{recipe.totalTime}} mins
       </span>

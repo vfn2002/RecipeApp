@@ -1,4 +1,4 @@
-import { RecipeActionTypes, SearchRecipeSuccess, SearchRecipeFailure } from "./recipes.action";
+import { RecipeActionTypes, SearchRecipeSuccess, SearchRecipeFailure, AddRecipesSuccess } from "./recipes.action";
 import { Recipe } from "../../model/Recipe";
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
@@ -31,7 +31,7 @@ export class RecipeEffects {
       this.recipeProvider
         .loadMoreRecipes(from)
         .pipe(
-          map((recipes: Recipe[]) => new SearchRecipeSuccess(recipes)),
+          map((recipes: Recipe[]) => new AddRecipesSuccess(recipes)),
           catchError(error => of(new SearchRecipeFailure()))
         )
     )
