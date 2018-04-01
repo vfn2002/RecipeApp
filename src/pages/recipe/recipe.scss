@@ -22,21 +22,25 @@ page-recipe {
     margin: 12px 19px
   }
   .timer-label-chip {
-    color: white;
-    font-weight: 600;
-    background: rgba(0, 0, 0, 0.32);
+    margin-left: 8px;
+    font-size: 12px;
+    color: #fff;
+    padding: 6px 8px;
+    background-color: rgba(229, 45, 39, 0.8);
+    text-transform: uppercase;
+    font-family: Roboto-black,"Helvetica Neue",sans-serif;
   }
   .timer-container {
     position: absolute;
     top: 0;
     right: 0;
-    margin: 8px;
+    margin: 14px;
   }
   .diet-chips-container {
     position: absolute;
     bottom: 0;
     right: 0;
-    margin: 8px;
+    margin: 14px;
   }
   .full-recipe-button {
     width: 100%;
@@ -51,7 +55,7 @@ page-recipe {
     color: #e52d27;
     margin: 12px;
     font-size: 36px;
-    font-family: "roboto-thin";
+    font-family: "roboto-black";
     text-align: center;
   }
   .macros-container {
@@ -81,4 +85,14 @@ page-recipe {
     text-align: center;
     color: #666;
   }
+  .diet-chips {
+    margin-left: 8px;
+    font-size: 12px;
+    color: #fff;
+    padding: 6px 8px;
+    background-color: rgba(229, 45, 39, 0.8);
+    text-transform: uppercase;
+    font-family: Roboto-black,"Helvetica Neue",sans-serif;
+  }
+
 }

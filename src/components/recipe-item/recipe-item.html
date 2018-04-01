@@ -1,8 +1,17 @@
 <ion-card>
-  <ion-card-header class="recipe-item-image" [style.background]="'url(' + recipe.image + ')'">
-  </ion-card-header>
-  <ion-card-content>
-    <h2>{{recipe.label}}</h2>
-    <h3>{{recipe.source}}</h3>
+  <ion-card-content class="recipe-item-image" [style.background]="'url(' + recipe.image + ')'">
+    <div class="difficilty-container">
+      <span class="difficulty-text">
+        {{recipe.ingredients | difficulty}}
+      </span>
+    </div>
+    <div class="cooking-time-duration">
+      <span class="cooking-time-text">
+        {{recipe.totalTime}} mins
+      </span>
+    </div>
+    <div class="recipe-name-container">
+      <h2 class="recipe-card-name">{{recipe.label}}</h2>
+    </div>
   </ion-card-content>
-</ion-card>
+</ion-card> 

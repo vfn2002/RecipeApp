@@ -19,10 +19,16 @@
 
 <ion-content>
 
-  <ingredients-list [ingredients]="ingredients$ | async"
+  <div class="empty-state flex-middle full-screen-content" *ngIf="(ingredients$ | async).length === 0">
+    <h1 class="empty-title">Add your ingredients.</h1>
+    <p class="empty-guide">Press the <strong>+</strong> button to start adding ingredients. Then press the search button to find recipes!</p>
+  </div>
+
+  <ingredients-list *ngIf="(ingredients$ | async).length >= 1"
+                    [ingredients]="ingredients$ | async"
                     (onDeleteIngredient)="deleteIngredient($event)"></ingredients-list>
 
-  <ion-fab right bottom padding>
+  <ion-fab right bottom>
       <button ion-fab color="primary" (click)="addIngredient()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 

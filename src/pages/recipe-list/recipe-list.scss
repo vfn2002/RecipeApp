@@ -1,3 +1,20 @@
 page-recipe-list {
-
+  .load-more-button {
+    width: 100%;
+    background: none;
+    box-shadow: none;
+    color: color($colors, primary, base);
+  }
+  .search-results-text {
+    margin: 6px 12px;
+    color: rgba(0,0,0,.34);
+    text-align: right;
+  }
+  .loading-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+  }
 }

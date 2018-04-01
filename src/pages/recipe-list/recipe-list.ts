@@ -5,6 +5,7 @@ import { AppState } from '../../store/app-state';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { RecipePage } from '../recipe/recipe';
+import { LoadMoreRecipes } from '../../store/recipes/recipes.action';
 
 /**
  * Generated class for the RecipeListPage page.
@@ -22,6 +23,10 @@ export class RecipeListPage {
 
   recipes$: Observable<Recipe[]>;
   isLoading$: Observable<boolean>;
+  search_results$: Observable<number>;
+
+  recipes_length: number;
+  loading_more_recipes: boolean;
 
   constructor(private store: Store<AppState>,
               public navCtrl: NavController, 
@@ -31,12 +36,21 @@ export class RecipeListPage {
 
   setup() {
     this.recipes$ = this.store.select(state => state.recipes.recipes);
+    this.recipes$.subscribe(
+      recipes => {
+        this.recipes_length = recipes.length;
+      }
+    )
     this.isLoading$ = this.store.select(state => state.recipes.isLoading);
+    this.search_results$ = this.store.select(state => state.recipes.search_results);
   }
 
   navigateRecipe(recipe: Recipe) {
-    console.log(recipe, 'navigate recip');
     this.navCtrl.push(RecipePage, {uri: recipe.uri})
+  }
+
+  loadMoreRecipes() {
+    this.store.dispatch(new LoadMoreRecipes(this.recipes_length));
   }
 
 

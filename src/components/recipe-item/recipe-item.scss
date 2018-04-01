@@ -1,6 +1,50 @@
 recipe-item {
   .recipe-item-image {
-    height: 150px;
+    height: 250px;
     background-size: cover !important;
+    position: relative;
+  }
+  .recipe-name-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 12px;
+  }
+  .recipe-card-name {
+    margin: 0;
+    font-size: 24px;
+    color: #fff;
+    padding: 0 17px;
+    background-color: rgba(color($colors, primary, base), 0.8);
+    text-transform: uppercase;
+    font-family: Roboto-black,"Helvetica Neue",sans-serif;
+  }
+  .cooking-time-duration {
+    position: absolute;
+    top: 0; right: 0;
+    margin: 12px;
+  }
+  .cooking-time-text {
+    margin: 0;
+    font-size: 12px;
+    color: #fff;
+    padding: 6px 8px;
+    background-color: rgba(229, 45, 39, 0.8);
+    text-transform: uppercase;
+    font-family: Roboto-black,"Helvetica Neue",sans-serif;
+  }
+  .difficilty-container {
+    position: absolute;
+    top: 0; left: 0;
+    margin: 12px;
+  }
+  .difficulty-text {
+    margin: 0;
+    font-size: 12px;
+    color: #fff;
+    padding: 6px 8px;
+    background-color: rgba(229, 45, 39, 0.8);
+    text-transform: uppercase;
+    font-family: Roboto-black,"Helvetica Neue",sans-serif;
   }
 }

@@ -4,12 +4,14 @@ import { Ingredient } from "../../model/Ingredient";
 export interface IngredientsState {
   searchIngredientPayload: Ingredient[],
   ingredients: Ingredient[],
+  shoppingList: Ingredient[],
   isLoading: boolean
 }
 
 export const initialState: IngredientsState = {
   searchIngredientPayload: null,
   ingredients: [],
+  shoppingList: [],
   isLoading: false
 };
 
@@ -20,6 +22,20 @@ export function ingredientsReducer(state = initialState, action: IngredientsActi
       return {
         ...state,
         ingredients: [action.payload, ...state.ingredients]
+      }
+    }
+
+    case IngredientsActionTypes.ADD_INGREDIENTS_TO_SHOPPING_LIST: {
+      return {
+        ...state,
+        shoppingList: [...state.shoppingList, ...action.payload]
+      }
+    }
+
+    case IngredientsActionTypes.CLEAR_SHOPPING_LIST: {
+      return {
+        ...state,
+        shoppingList: []
       }
     }
 

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Search results</ion-title>
+    <ion-title>Recipes found</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,8 +18,18 @@
     <ion-spinner></ion-spinner>
   </div>
 
-  <ion-list *ngIf="!(isLoading$ | async)">
+  <div class="empty-state full-screen-content flex-middle" *ngIf="!(isLoading$ | async) && (recipes$ | async).length === 0">
+    <h1 class="empty-title">We're out of ideas :(</h1>
+    <p class="empty-guide">We could not find any recipes that had all your ingredients. try and remove or check if your ingredients are spelled correctly.</p>
+  </div>
+
+  <ion-list *ngIf="(recipes$ | async).length >= 1">
+    <p class="search-results-text">Recipes found: <strong>{{(search_results$ | async)}}</strong></p>
     <recipe-item [recipe]="recipe" *ngFor="let recipe of (recipes$ | async)" (click)="navigateRecipe(recipe)"></recipe-item>
+    <button *ngIf="(search_results$ | async) > (recipes$ | async).length && !(isLoading$ | async)" ion-button class="load-more-button" (click)="loadMoreRecipes()">Load more</button>
+    <div class="loading-container" *ngIf="(isLoading$ | async)">
+      <ion-spinner></ion-spinner>
+    </div>
   </ion-list>
 
 </ion-content>

@@ -23,6 +23,21 @@ export class RecipeEffects {
     )
   );
 
+  @Effect()
+  loadMoreRecipes$ = this.actions$.pipe(
+    ofType(RecipeActionTypes.LOAD_MORE_RECIPES),
+    map((action: any) => action.payload),
+    exhaustMap((from: number) => 
+      this.recipeProvider
+        .loadMoreRecipes(from)
+        .pipe(
+          map((recipes: Recipe[]) => new SearchRecipeSuccess(recipes)),
+          catchError(error => of(new SearchRecipeFailure()))
+        )
+    )
+  );
+
+
   // @Effect()
   // addIngredient$ = this.actions$.pipe(
   //   ofType(IngredientsActionTypes.ADD_INGREDIENT),

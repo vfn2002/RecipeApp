@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Recipe } from '../../model/Recipe';
+import { DifficultyPipe } from '../../pipes/difficulty.pipe';
 
 /**
  * Generated class for the RecipeItemComponent component.
@@ -9,7 +10,8 @@ import { Recipe } from '../../model/Recipe';
  */
 @Component({
   selector: 'recipe-item',
-  templateUrl: 'recipe-item.html'
+  templateUrl: 'recipe-item.html',
+  providers: [DifficultyPipe]
 })
 export class RecipeItemComponent {
 

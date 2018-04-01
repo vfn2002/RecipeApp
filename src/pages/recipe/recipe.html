@@ -26,18 +26,16 @@
         <ion-icon class="back-arrow" name="arrow-back"></ion-icon>
       </div>
 
-      <div class="timer-container">
-        <ion-chip class="timer-label-chip">
-          <ion-label>{{((recipe$ | async).totalTime > 0) ? (recipe$ | async).totalTime : '1-2'}} mins</ion-label>
-        </ion-chip>
+      <div class="timer-container" *ngIf="(recipe$ | async).totalTime > 0">
+        <span class="timer-label-chip">
+          {{(recipe$ | async).totalTime}} mins
+        </span>
       </div>
 
       <div class="diet-chips-container">
-        <ion-chip class="diet-label-chip" *ngFor="let dietLabel of (recipe$ | async).dietLabels">
-          <ion-label class="diet-label-text">
+        <span class="diet-chips" *ngFor="let dietLabel of (recipe$ | async).dietLabels">
             {{dietLabel}}
-          </ion-label>
-        </ion-chip>
+        </span>
       </div>
     </div>
 
@@ -78,7 +76,7 @@
         <ion-list>
           <ion-item *ngFor="let ingredientLine of (recipe$ | async).ingredientLines" text-wrap>{{ingredientLine}}</ion-item>
         </ion-list>
-        <button ion-button class="add-to-shopping-button">Add to shopping list</button>
+        <button ion-button class="add-to-shopping-button" (click)="addIngredientsToShoppingList()">Add to shopping list</button>
       </ion-card-content>
     </ion-card>
 
