@@ -1,13 +1,15 @@
-<ion-list>
-  <ion-item-sliding *ngFor="let ingredient of ingredients">
-    <ion-item>
-      {{ingredient.food.label}}
-    </ion-item>
-    <ion-item-options side="right">
-      <button ion-button color="danger" (click)="deleteIngredient(ingredient)">
-        <ion-icon name="trash"></ion-icon>
-        Delete
-      </button>
-    </ion-item-options>
-  </ion-item-sliding>
-</ion-list>
+<ion-card>
+  <ion-list>
+    <ion-item-sliding *ngFor="let ingredient of ingredients">
+      <ion-item>
+        {{ingredient.food.label}}
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deleteIngredient(ingredient)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-card>
