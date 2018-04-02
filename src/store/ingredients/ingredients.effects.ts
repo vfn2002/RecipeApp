@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 import { tap, map, exhaustMap, catchError, switchMap, withLatestFrom, exhaust } from 'rxjs/operators';
-import { IngredientsActionTypes, SearchIngredient, SearchIngredientSuccess, SearchIngredientFailure, AddIngredientsToShoppingList, ClearShoppingList } from './ingredients.action';
+import { IngredientsActionTypes, SearchIngredient, SearchIngredientSuccess, SearchIngredientFailure, AddIngredientsToShoppingList, ClearShoppingList, AddIngredientsToFridge } from './ingredients.action';
 import { IngredientProvider } from '../../providers/ingredient/ingredient';
 import { Ingredient } from '../../model/Ingredient';
 import { Storage } from '@ionic/storage';
@@ -37,6 +37,18 @@ export class IngredientsEffects {
         .subscribe(
           (ingredients: Ingredient[]) => 
             this.storage.set('shopping_list', {ingredients: [...ingredients]})
+        )
+    })
+  );
+
+  @Effect({dispatch: false})
+  addIngredientsToFridge$ = this.actions$.pipe(
+    ofType(IngredientsActionTypes.ADD_INGREDIENTS_TO_FRIDGE),
+    map((action: AddIngredientsToFridge) => {
+      this.store.select(state => state.ingredients.fridge)
+        .subscribe(
+          (ingredients: Ingredient[]) => 
+            this.storage.set('fridge', {ingredients: [...ingredients]})
         )
     })
   );

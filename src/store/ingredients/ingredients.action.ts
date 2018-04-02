@@ -8,7 +8,9 @@ export enum IngredientsActionTypes {
   SEARCH_INGREDIENT_SUCCESS = '[Ingredients] SEARCH_INGREDIENT_SUCCESS',
   SEARCH_INGREDIENT_FAILURE = '[Ingredients] SEARCH_INGREDIENT_FAILURE',
   ADD_INGREDIENTS_TO_SHOPPING_LIST = '[Ingredients] ADD_INGREDIENTS_TO_SHOPPING_LIST',
-  CLEAR_SHOPPING_LIST = '[Ingredients] CLEAR_SHOPPING_LIST'
+  CLEAR_SHOPPING_LIST = '[Ingredients] CLEAR_SHOPPING_LIST',
+  ADD_INGREDIENTS_TO_FRIDGE = '[Ingredients] ADD_INGREDIENTS_TO_FRIDGE',
+  CLEAR_FRIDGE = '[Ingredients] CLEAR_FRIDGE'
 }
 
 export class AddIngredient implements Action {
@@ -44,6 +46,13 @@ export class SearchIngredientSuccess implements Action {
     console.log('success payload => ', payload);
   }
 }
+export class AddIngredientsToFridge implements Action {
+  readonly type = IngredientsActionTypes.ADD_INGREDIENTS_TO_FRIDGE;
+  constructor(public payload: Ingredient[]){}
+}
+export class ClearFridge implements Action {
+  readonly type = IngredientsActionTypes.CLEAR_FRIDGE;
+}
 
 export class SearchIngredientFailure implements Action {
   readonly type = IngredientsActionTypes.SEARCH_INGREDIENT_FAILURE;
@@ -56,4 +65,6 @@ export type IngredientsActions =
  | SearchIngredientSuccess
  | SearchIngredientFailure
  | AddIngredientsToShoppingList
- | ClearShoppingList;
+ | ClearShoppingList
+ | AddIngredientsToFridge
+ | ClearFridge;

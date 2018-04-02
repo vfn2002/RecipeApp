@@ -22,8 +22,8 @@
     </p>
   </div>
 
-  <ion-card>
-    <ion-list *ngIf="(shopping_list$ | async).length >= 1">
+  <ion-card *ngIf="(shopping_list$ | async).length >= 1">
+    <ion-list>
         <ion-item-sliding *ngFor="let ingredient of (shopping_list$ | async)">
             <ion-item text-wrap>
               {{ingredient.food.label}}

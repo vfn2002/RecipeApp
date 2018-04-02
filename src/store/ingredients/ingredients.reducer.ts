@@ -5,6 +5,7 @@ export interface IngredientsState {
   searchIngredientPayload: Ingredient[],
   ingredients: Ingredient[],
   shoppingList: Ingredient[],
+  fridge: Ingredient[],
   isLoading: boolean
 }
 
@@ -12,6 +13,7 @@ export const initialState: IngredientsState = {
   searchIngredientPayload: null,
   ingredients: [],
   shoppingList: [],
+  fridge: [],
   isLoading: false
 };
 
@@ -22,6 +24,20 @@ export function ingredientsReducer(state = initialState, action: IngredientsActi
       return {
         ...state,
         ingredients: [action.payload, ...state.ingredients]
+      }
+    }
+
+    case IngredientsActionTypes.ADD_INGREDIENTS_TO_FRIDGE: {
+      return {
+        ...state,
+        fridge: [...state.fridge, ...action.payload]
+      }
+    }
+
+    case IngredientsActionTypes.CLEAR_FRIDGE: {
+      return {
+        ...state,
+        fridge: []
       }
     }
 

@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppState } from '../../store/app-state';
 import { Store } from '@ngrx/store';
-import { SearchIngredient, AddIngredient } from '../../store/ingredients/ingredients.action';
+import { SearchIngredient, AddIngredient, AddIngredientsToFridge } from '../../store/ingredients/ingredients.action';
 import { Ingredient } from '../../model/Ingredient';
 import { Observable } from 'rxjs/Observable';
 import { RecipeSearchPage } from '../recipe-search/recipe-search';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { FridgePage } from '../fridge/fridge';
 
 /**
  * Generated class for the FindIngredientPage page.
@@ -72,8 +73,13 @@ export class FindIngredientPage {
   }
 
   addIngredient(ingredient: Ingredient) {
-    this.store.dispatch(new AddIngredient(ingredient));
-    this.navCtrl.push(RecipeSearchPage);
+    if (this.navParams.data.isAddingToFridge) {
+      this.store.dispatch(new AddIngredientsToFridge([ingredient]));
+      this.navCtrl.push(FridgePage);
+    } else {
+      this.store.dispatch(new AddIngredient(ingredient));
+      this.navCtrl.push(RecipeSearchPage);
+    }
   }
 
   addIngredientFromLabel(searchInput: string) {

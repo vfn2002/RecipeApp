@@ -80,4 +80,7 @@ ion-icon {
   &[class*="cookking-logo"] {
       mask-image: url(../assets/imgs/cookking-logo.svg);
   }
+  &[class*="cookking-fridge"] {
+      mask-image: url(../assets/imgs/cookking-fridge.svg);
+  }
 }
