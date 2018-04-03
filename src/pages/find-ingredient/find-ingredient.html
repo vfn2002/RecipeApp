@@ -21,7 +21,7 @@
   <ion-card *ngIf="(searchInput && searchInput.length >= 1) || (searchInput && (ingredients$ | async).length >= 1)">
     <ion-item *ngIf="searchInput && searchInput.length >= 1" (click)="addIngredientFromLabel(searchInput)">
       <ion-label class="search-input-label">
-        {{searchInput}}
+        Add <strong>{{searchInput}}</strong> to your {{getPageType()}}.
       </ion-label>
     </ion-item>
   
@@ -29,10 +29,10 @@
       <ion-spinner></ion-spinner>
     </div>
     
-    <ion-list *ngIf="!(isLoading$ | async)" class="ingredients-search-list">
+    <!-- <ion-list *ngIf="!(isLoading$ | async)" class="ingredients-search-list">
       <ion-item *ngFor="let ingredient of (ingredients$ | async)" (click)="addIngredient(ingredient)">
         {{ingredient.food.label}}
       </ion-item>
-    </ion-list>
+    </ion-list> -->
   </ion-card>
 </ion-content>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 import { tap, map, exhaustMap, catchError, switchMap, withLatestFrom, exhaust } from 'rxjs/operators';
-import { IngredientsActionTypes, SearchIngredient, SearchIngredientSuccess, SearchIngredientFailure, AddIngredientsToShoppingList, ClearShoppingList, AddIngredientsToFridge } from './ingredients.action';
+import { IngredientsActionTypes, SearchIngredient, SearchIngredientSuccess, SearchIngredientFailure, AddIngredientsToShoppingList, ClearShoppingList, AddIngredientsToFridge, RemoveIngredientFromFridge } from './ingredients.action';
 import { IngredientProvider } from '../../providers/ingredient/ingredient';
 import { Ingredient } from '../../model/Ingredient';
 import { Storage } from '@ionic/storage';
@@ -63,6 +63,26 @@ export class IngredientsEffects {
         message: 'Cleared shopping list.',
         position: 'top'
       }).present();
+    })
+  );
+
+  @Effect({dispatch: false})
+  removeIngredientFromFridge$ = this.actions$.pipe(
+    ofType(IngredientsActionTypes.REMOVE_INGREDIENT_FROM_FRIDGE),
+    map((action: RemoveIngredientFromFridge) => {
+      this.storage.get('fridge').then((fridge: any) => {
+        this.storage.set('fridge', {ingredients: fridge.ingredients.filter(ingredient => ingredient.food.label !== action.payload.food.label)})
+      });
+    })
+  );
+
+  @Effect({dispatch: false})
+  removeItemFromShoppingList$ = this.actions$.pipe(
+    ofType(IngredientsActionTypes.REMOVE_INGREDIENT_FROM_FRIDGE),
+    map((action: RemoveIngredientFromFridge) => {
+      this.storage.get('shopping_list').then((shopping_list: any) => {
+        this.storage.set('shopping_list', {ingredients: shopping_list.ingredients.filter(ingredient => ingredient.food.label !== action.payload.food.label)})
+      });
     })
   );
 

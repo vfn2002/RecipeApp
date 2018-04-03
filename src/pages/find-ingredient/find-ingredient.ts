@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppState } from '../../store/app-state';
 import { Store } from '@ngrx/store';
-import { SearchIngredient, AddIngredient, AddIngredientsToFridge } from '../../store/ingredients/ingredients.action';
+import { SearchIngredient, AddIngredient, AddIngredientsToFridge, AddIngredientsToShoppingList } from '../../store/ingredients/ingredients.action';
 import { Ingredient } from '../../model/Ingredient';
 import { Observable } from 'rxjs/Observable';
 import { RecipeSearchPage } from '../recipe-search/recipe-search';
@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { FridgePage } from '../fridge/fridge';
+import { ShoppingListPage } from '../shopping-list/shopping-list';
 
 /**
  * Generated class for the FindIngredientPage page.
@@ -64,22 +65,21 @@ export class FindIngredientPage {
     this.isLoading$ = this.store.select(state => state.ingredients.isLoading);
   }
 
-  ionViewDidLoad() {
-    
-  }
-
-  testApi() {
-    this.store.dispatch(new SearchIngredient('apple'));
-  }
+  ionViewDidLoad() {}
 
   addIngredient(ingredient: Ingredient) {
+
     if (this.navParams.data.isAddingToFridge) {
       this.store.dispatch(new AddIngredientsToFridge([ingredient]));
       this.navCtrl.push(FridgePage);
+    } else if (this.navParams.data.isAddingToShoppingList) {
+      this.store.dispatch(new AddIngredientsToShoppingList([ingredient]));
+      this.navCtrl.push(ShoppingListPage);
     } else {
       this.store.dispatch(new AddIngredient(ingredient));
       this.navCtrl.push(RecipeSearchPage);
     }
+    
   }
 
   addIngredientFromLabel(searchInput: string) {
@@ -90,6 +90,16 @@ export class FindIngredientPage {
       measures: {}
     };
     this.addIngredient(ingredient);
+  }
+
+  getPageType(): string {
+    if (this.navParams.data.isAddingToShoppingList) {
+      return 'shopping list';
+    } else if (this.navParams.data.isAddingToFridge) {
+      return 'fridge';
+    } else {
+      return 'search';
+    }
   }
 
 }

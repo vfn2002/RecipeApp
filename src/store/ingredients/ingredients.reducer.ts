@@ -34,6 +34,13 @@ export function ingredientsReducer(state = initialState, action: IngredientsActi
       }
     }
 
+    case IngredientsActionTypes.REMOVE_INGREDIENT_FROM_FRIDGE: {
+      return {
+        ...state,
+        fridge: state.fridge.filter(ingredient => ingredient !== action.payload)
+      }
+    }
+
     case IngredientsActionTypes.CLEAR_FRIDGE: {
       return {
         ...state,
@@ -45,6 +52,13 @@ export function ingredientsReducer(state = initialState, action: IngredientsActi
       return {
         ...state,
         shoppingList: [...state.shoppingList, ...action.payload]
+      }
+    }
+
+    case IngredientsActionTypes.REMOVE_INGREDIENT_FROM_SHOPPING_LIST: {
+      return {
+        ...state,
+        shoppingList: state.shoppingList.filter(ingredient => ingredient !== action.payload)
       }
     }
 

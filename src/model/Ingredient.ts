@@ -1,6 +1,7 @@
 export interface Ingredient {
   food?: Food,
-  measures?: Measures
+  measures?: Measures,
+  isSelected?: boolean
 }
 
 export interface Food {

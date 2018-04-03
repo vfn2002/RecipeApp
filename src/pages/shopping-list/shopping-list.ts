@@ -4,7 +4,8 @@ import { AppState } from '../../store/app-state';
 import { Store } from '@ngrx/store';
 import { Ingredient } from '../../model/Ingredient';
 import { Observable } from 'rxjs/Observable';
-import { ClearShoppingList } from '../../store/ingredients/ingredients.action';
+import { ClearShoppingList, RemoveIngredientFromShoppingList } from '../../store/ingredients/ingredients.action';
+import { FindIngredientPage } from '../find-ingredient/find-ingredient';
 
 /**
  * Generated class for the ShoppingListPage page.
@@ -36,7 +37,7 @@ export class ShoppingListPage {
   ionViewDidLoad() {}
 
   deleteIngredient(ingredient: Ingredient) {
-
+    this.store.dispatch(new RemoveIngredientFromShoppingList(ingredient));
   }
 
   clearList() {
@@ -60,6 +61,10 @@ export class ShoppingListPage {
       ]
     })
     confirm_clear.present();
+  }
+
+  addItemToShoppingList() {
+    this.navCtrl.push(FindIngredientPage, {isAddingToShoppingList: true});
   }
 
 }

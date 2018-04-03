@@ -64,6 +64,9 @@ ion-fab {
 .scroll-content {
   background: color($colors, light-background, base);
 }
+.capitalize:first-letter {
+  text-transform: capitalize;
+}
 
 ion-icon {
   &[class*="cookking-"] {

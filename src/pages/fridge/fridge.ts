@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Ingredient } from '../../model/Ingredient';
 import { Observable } from 'rxjs/Observable';
 import { FindIngredientPage } from '../find-ingredient/find-ingredient';
-import { ClearFridge, AddIngredient } from '../../store/ingredients/ingredients.action';
+import { ClearFridge, AddIngredient, DeleteIngredient, RemoveIngredientFromFridge } from '../../store/ingredients/ingredients.action';
 
 /**
  * Generated class for the FridgePage page.
@@ -43,17 +43,28 @@ export class FridgePage {
     this.navCtrl.push(FindIngredientPage, {isAddingToFridge: true});
   }
 
-  addItemToSearch(ingredient: Ingredient) {
-    this.store.dispatch(new AddIngredient(ingredient));
-    this.toastCtrl.create({
-      duration: 1500,
-      message: 'Added ' + ingredient.food.label + ' to your search.',
-      position: 'top'
-    }).present();
+  toggleItemToSearch(ingredient: Ingredient) {
+    if (ingredient.isSelected) {
+      ingredient.isSelected = false;
+      this.store.dispatch(new DeleteIngredient(ingredient));
+      this.toastCtrl.create({
+        duration: 1500,
+        message: 'Removed ' + ingredient.food.label + ' from your search.',
+        position: 'top'
+      }).present();
+    } else {
+      ingredient.isSelected = true;
+      this.store.dispatch(new AddIngredient(ingredient));
+      this.toastCtrl.create({
+        duration: 1500,
+        message: 'Added ' + ingredient.food.label + ' to your search.',
+        position: 'top'
+      }).present();
+    }
   }
 
   removeFromFridge(ingredient: Ingredient) {
-
+    this.store.dispatch(new RemoveIngredientFromFridge(ingredient));
   }
 
   clearFridge() {
