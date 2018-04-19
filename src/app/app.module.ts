@@ -29,6 +29,8 @@ import { FridgePageModule } from '../pages/fridge/fridge.module';
 import { ShoppingListPageModule } from '../pages/shopping-list/shopping-list.module';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { DifficultyPipe } from '../pipes/difficulty.pipe';
+import { IntroPage } from '../pages/intro/intro';
+import { IntroPageModule } from '../pages/intro/intro.module';
 
 export const reducers: ActionReducerMap<AppState> = {
   ingredients: ingredientsReducer,
@@ -58,6 +60,7 @@ export const reducers: ActionReducerMap<AppState> = {
     RecipePageModule,
     FridgePageModule,
     ShoppingListPageModule,
+    IntroPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -67,7 +70,8 @@ export const reducers: ActionReducerMap<AppState> = {
     RecipeSearchPage,
     FindIngredientPage,
     RecipeListPage,
-    RecipePage
+    RecipePage,
+    IntroPage
   ],
   providers: [
     StatusBar,

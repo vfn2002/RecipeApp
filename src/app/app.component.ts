@@ -10,12 +10,13 @@ import { AppState } from '../store/app-state';
 import { Store } from '@ngrx/store';
 import { AddIngredientsToShoppingList, AddIngredientsToFridge } from '../store/ingredients/ingredients.action';
 import { Ingredient } from '../model/Ingredient';
+import { IntroPage } from '../pages/intro/intro';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any;
 
   constructor(storage: Storage, store: Store<AppState>, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -31,7 +32,18 @@ export class MyApp {
         if (fridge && fridge.ingredients) store.dispatch(new AddIngredientsToFridge(fridge.ingredients));
       });
 
-      
+      /**
+       * Present intro if not completed.
+       */
+      storage.get('intro_completed').then(completed => { 
+        if(completed){
+          this.rootPage = HomePage;
+        } else {
+          this.rootPage = IntroPage;
+          storage.set('intro_completed', true);
+        }
+      });
+ 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       

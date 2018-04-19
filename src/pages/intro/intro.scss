@@ -1,0 +1,21 @@
+.ios, .md {
+ 
+  page-intro {
+ 
+    ion-slide {
+      background-color: color($colors, primary, base);
+    }
+ 
+    ion-slide img {
+      height: 70vh !important;
+      width: auto !important;
+    }
+
+    .swiper-pagination-bullet-active{
+      background: white !important;
+      opacity: 1;
+    }
+ 
+  }
+ 
+}
