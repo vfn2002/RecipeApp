@@ -1,13 +1,15 @@
 .ios, .md {
  
   page-intro {
+
+    background-color: color($colors, primary, base);
  
     ion-slide {
       background-color: color($colors, primary, base);
     }
  
     ion-slide img {
-      height: 70vh !important;
+      height: 80vh !important;
       width: auto !important;
     }
 
