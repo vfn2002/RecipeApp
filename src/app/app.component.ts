@@ -26,8 +26,8 @@ export class MyApp {
        */
       storage.get('shopping_list').then((shopping_list: any) => {
           if (shopping_list && shopping_list.ingredients) store.dispatch(new AddIngredientsToShoppingList(shopping_list.ingredients))
-        }
-      )
+      });
+
       storage.get('fridge').then((fridge: any) => {
         if (fridge && fridge.ingredients) store.dispatch(new AddIngredientsToFridge(fridge.ingredients));
       });
@@ -52,4 +52,3 @@ export class MyApp {
     });
   }
 }
-
