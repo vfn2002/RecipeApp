@@ -48,13 +48,12 @@ export class RecipePage {
 
   openSourceUrl() {
     const options: InAppBrowserOptions = {
-      zoom: 'no',
-      hardwareback: 'no',
+      zoom: 'yes',
       footer: 'yes'
     }
     this.recipe$.subscribe(
       recipe => {
-        const browser = this.inAppBrowser.create(recipe.url, '_self', options);
+        const browser = this.inAppBrowser.create(recipe.url, '_system', options);
       }
     )
   }
